@@ -1,6 +1,9 @@
 plugins {
+    // 스프링 부트 해당 버전에 맞는 버전으로 나머지 라이브러리의 버전이 바뀐다.
     id 'org.springframework.boot' version '3.0.2'
-    //id 'io.spring.dependency-management' version '1.1.0'
+    // bom 정보를 참고
+    // bill of materials 자제 명세서, 프로젝트에서 필요한 부품의 목록
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
 }
 
@@ -20,50 +23,55 @@ configurations {
 repositories {
     mavenCentral()
 }
+// starter를 쓰더라도 세부적인 라이브러리의 버전을 바꾸고 싶다.
+ext['tomcat.version'] = '10.1.4'
 
 
 dependencies {
 
-    //1. 라이브러리 직접 지정
-    //스프링 웹 MVC
-    implementation 'org.springframework:spring-webmvc:6.0.4'
-    //내장 톰캣
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.5'
-    //JSON 처리
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
-    //스프링 부트 관련
-    implementation 'org.springframework.boot:spring-boot:3.0.2'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure:3.0.2'
-    //LOG 관련
-    implementation 'ch.qos.logback:logback-classic:1.4.5'
-    implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.19.0'
-    implementation 'org.slf4j:jul-to-slf4j:2.0.6'
-    //YML 관련
-    implementation 'org.yaml:snakeyaml:1.33'
+//    //1. 라이브러리 직접 지정
+//    //스프링 웹 MVC
+//    implementation 'org.springframework:spring-webmvc:6.0.4'
+//    //내장 톰캣
+//    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.5'
+//    //JSON 처리
+//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+//    //스프링 부트 관련
+//    implementation 'org.springframework.boot:spring-boot:3.0.2'
+//    implementation 'org.springframework.boot:spring-boot-autoconfigure:3.0.2'
+//    //LOG 관련
+//    implementation 'ch.qos.logback:logback-classic:1.4.5'
+//    implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.19.0'
+//    implementation 'org.slf4j:jul-to-slf4j:2.0.6'
+//    //YML 관련
+//    implementation 'org.yaml:snakeyaml:1.33'
 
-/*
-    //2. 스프링 부트 라이브러리 버전 관리
-    //스프링 웹, MVC
-    implementation 'org.springframework:spring-webmvc'
-    //내장 톰캣
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core'
-    //JSON 처리
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
-    //스프링 부트 관련
-    implementation 'org.springframework.boot:spring-boot'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure'
-    //LOG 관련
-    implementation 'ch.qos.logback:logback-classic'
-    implementation 'org.apache.logging.log4j:log4j-to-slf4j'
-    implementation 'org.slf4j:jul-to-slf4j'
-    //YML 관련
-    implementation 'org.yaml:snakeyaml'
-*/
 
-/*
+//    //2. 스프링 부트 라이브러리 버전 관리
+//    //스프링 웹, MVC
+//    implementation 'org.springframework:spring-webmvc'
+//    //내장 톰캣
+//    implementation 'org.apache.tomcat.embed:tomcat-embed-core'
+//    //JSON 처리
+//    implementation 'com.fasterxml.jackson.core:jackson-databind'
+//    //스프링 부트 관련
+//    implementation 'org.springframework.boot:spring-boot'
+//    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+//    //LOG 관련
+//    implementation 'ch.qos.logback:logback-classic'
+//    implementation 'org.apache.logging.log4j:log4j-to-slf4j'
+//    implementation 'org.slf4j:jul-to-slf4j'
+//    //YML 관련
+//    implementation 'org.yaml:snakeyaml:1.30'
+
+
+
     //3. 스프링 부트 스타터
+    // 이거 한 줄로 위에 적은 모든 라이브러리들이 들어온다.
+    // 내장 톰캣, 부트, json, yml 등등
     implementation 'org.springframework.boot:spring-boot-starter-web'
-*/
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+
 }
 
 tasks.named('test') {
